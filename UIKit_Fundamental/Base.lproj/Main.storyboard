@@ -55,7 +55,7 @@
                                     </button>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="사진 키워드 입력" translatesAutoresizingMaskIntoConstraints="NO" id="68Q-6m-D27">
                                         <rect key="frame" x="0.0" y="201" width="260" height="51"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="light"/>
                                     </searchBar>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="iPb-Rq-2ON">
                                         <rect key="frame" x="120" y="292" width="20" height="20"/>
