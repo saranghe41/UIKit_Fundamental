@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4rT-Pq-cnT">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,70 +8,158 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UIKit_Fundamental" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="UIKit_Fundamental" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scribble.variable" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="up1-vO-iAr">
-                                <rect key="frame" x="147" y="193.5" width="120" height="119.5"/>
-                                <color key="tintColor" red="1" green="0.61145178020000002" blue="0.67639169710000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSN-df-OQ5">
+                                <rect key="frame" x="30" y="101" width="260" height="450"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scribble.variable" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="up1-vO-iAr">
+                                        <rect key="frame" x="55" y="9.5" width="150" height="119.5"/>
+                                        <color key="tintColor" red="1" green="0.61145178020000002" blue="0.67639169710000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="gKv-Ts-O4R"/>
+                                            <constraint firstAttribute="width" constant="150" id="qAG-tI-s1Y"/>
+                                        </constraints>
+                                    </imageView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Kuk-Kp-fpN" userLabel="mySegment Btn">
+                                        <rect key="frame" x="55" y="150" width="150" height="32"/>
+                                        <segments>
+                                            <segment title="사진검색"/>
+                                            <segment title="사용자검색"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="mySegmentBtnValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="byI-gl-LXt"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSR-Bq-0xV">
+                                        <rect key="frame" x="85" y="282" width="90" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="PbK-KP-ubl"/>
+                                            <constraint firstAttribute="height" constant="40" id="Wf5-Oe-WLL"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="검 색">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" red="1" green="0.69371754918228512" blue="0.46399244396940287" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onSearchBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Ye-fQ-8Cg"/>
+                                        </connections>
+                                    </button>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="사진 키워드 입력" translatesAutoresizingMaskIntoConstraints="NO" id="68Q-6m-D27">
+                                        <rect key="frame" x="0.0" y="201" width="260" height="51"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="iPb-Rq-2ON">
+                                        <rect key="frame" x="120" y="292" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="9NS-YS-8vT"/>
-                                    <constraint firstAttribute="height" constant="120" id="rkk-WR-YLC"/>
+                                    <constraint firstAttribute="height" constant="450" id="AuJ-xQ-ko3"/>
+                                    <constraint firstItem="up1-vO-iAr" firstAttribute="centerX" secondItem="wSN-df-OQ5" secondAttribute="centerX" id="B6G-33-9jE"/>
+                                    <constraint firstItem="wSR-Bq-0xV" firstAttribute="centerX" secondItem="wSN-df-OQ5" secondAttribute="centerX" id="Ey6-rx-e6q"/>
+                                    <constraint firstItem="68Q-6m-D27" firstAttribute="top" secondItem="Kuk-Kp-fpN" secondAttribute="bottom" constant="20" id="F8V-Y9-5fV"/>
+                                    <constraint firstAttribute="trailing" secondItem="68Q-6m-D27" secondAttribute="trailing" id="MA6-oR-cbL"/>
+                                    <constraint firstItem="up1-vO-iAr" firstAttribute="top" secondItem="wSN-df-OQ5" secondAttribute="top" constant="10" id="NVH-JF-pIb"/>
+                                    <constraint firstItem="Kuk-Kp-fpN" firstAttribute="top" secondItem="up1-vO-iAr" secondAttribute="bottom" constant="20" id="Y0L-kR-FLn"/>
+                                    <constraint firstItem="Kuk-Kp-fpN" firstAttribute="leading" secondItem="up1-vO-iAr" secondAttribute="leading" id="Yo9-5A-Nd1"/>
+                                    <constraint firstItem="iPb-Rq-2ON" firstAttribute="centerX" secondItem="wSR-Bq-0xV" secondAttribute="centerX" id="faE-l4-YOk"/>
+                                    <constraint firstItem="iPb-Rq-2ON" firstAttribute="centerY" secondItem="wSR-Bq-0xV" secondAttribute="centerY" id="fbx-1m-Pdf"/>
+                                    <constraint firstItem="wSR-Bq-0xV" firstAttribute="top" secondItem="68Q-6m-D27" secondAttribute="bottom" constant="30" id="hP0-T5-Gdo"/>
+                                    <constraint firstItem="up1-vO-iAr" firstAttribute="trailing" secondItem="Kuk-Kp-fpN" secondAttribute="trailing" id="qpe-jK-klt"/>
+                                    <constraint firstItem="68Q-6m-D27" firstAttribute="leading" secondItem="wSN-df-OQ5" secondAttribute="leading" id="tOW-ys-j1O"/>
                                 </constraints>
-                            </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Kuk-Kp-fpN">
-                                <rect key="frame" x="132" y="354" width="150" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1eE-jO-Yw6"/>
-                                    <constraint firstAttribute="width" constant="150" id="eBY-YL-gPT"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="사진검색"/>
-                                    <segment title="사용자검색"/>
-                                </segments>
-                            </segmentedControl>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="사진 키워드 입력" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pk5-YW-xgr">
-                                <rect key="frame" x="40" y="414" width="334" height="34"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                            </textField>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pk5-YW-xgr" secondAttribute="trailing" constant="40" id="IAa-n5-tl6"/>
-                            <constraint firstItem="Kuk-Kp-fpN" firstAttribute="top" secondItem="up1-vO-iAr" secondAttribute="bottom" constant="40" id="KsM-25-8Bf"/>
-                            <constraint firstItem="Kuk-Kp-fpN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LEr-cV-pvp"/>
-                            <constraint firstItem="up1-vO-iAr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="MhS-cS-WaL"/>
-                            <constraint firstItem="Pk5-YW-xgr" firstAttribute="top" secondItem="Kuk-Kp-fpN" secondAttribute="bottom" constant="30" id="ZBh-Om-iXn"/>
-                            <constraint firstItem="Pk5-YW-xgr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="mN2-Jb-XuC"/>
-                            <constraint firstItem="up1-vO-iAr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pjp-5E-DFy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wSN-df-OQ5" secondAttribute="trailing" constant="30" id="5bv-5p-Joq"/>
+                            <constraint firstItem="wSN-df-OQ5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="IeJ-ZR-TDU"/>
+                            <constraint firstItem="wSN-df-OQ5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="OiK-cq-es3"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0rc-g4-hTx"/>
                     <connections>
-                        <outlet property="myTextField" destination="Pk5-YW-xgr" id="1kn-gz-wOi"/>
-                        <outlet property="segmentBtn" destination="Kuk-Kp-fpN" id="v30-aw-45Z"/>
+                        <outlet property="myIndicator" destination="iPb-Rq-2ON" id="Ij0-p8-dJk"/>
+                        <outlet property="mySearchBar" destination="68Q-6m-D27" id="k20-5S-HY2"/>
+                        <outlet property="mySearchBtn" destination="wSR-Bq-0xV" id="byU-nx-f4t"/>
+                        <outlet property="mySegmentBtn" destination="Kuk-Kp-fpN" id="p77-fE-kAX"/>
+                        <segue destination="cud-o8-fbu" kind="show" identifier="goToUserListVC" id="0K7-1V-VhA"/>
+                        <segue destination="GwI-wr-vVY" kind="show" identifier="goToPhotoCollectionVC" id="HDk-fN-6sm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="CCG-IT-XpQ">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="0bx-Pc-HZG"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="20" y="80"/>
+            <point key="canvasLocation" x="554" y="102"/>
+        </scene>
+        <!--Photo CollectionVC-->
+        <scene sceneID="eqj-DY-7LR">
+            <objects>
+                <viewController id="GwI-wr-vVY" customClass="PhotoCollectionVC" customModule="UIKit_Fundamental" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FhV-yh-1hk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8Wy-aP-XCC"/>
+                        <color key="backgroundColor" red="1" green="0.99539603619999995" blue="0.78383707560000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qBX-bY-CqW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A4j-Yb-1Fg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1534" y="-297"/>
+        </scene>
+        <!--User ListVC-->
+        <scene sceneID="iA9-hp-4eL">
+            <objects>
+                <viewController id="cud-o8-fbu" customClass="UserListVC" customModule="UIKit_Fundamental" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YPO-26-D8P">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="eST-fJ-2DJ"/>
+                        <color key="backgroundColor" red="1" green="0.69371754919999995" blue="0.463992444" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iNN-Rw-IDE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OlU-eK-XJw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1534" y="505"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aAW-kd-sph">
+            <objects>
+                <navigationController id="4rT-Pq-cnT" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="uo2-Zu-GKE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Sh2-4z-KKt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CYk-1s-UCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-323" y="103"/>
         </scene>
     </scenes>
     <resources>
         <image name="scribble.variable" catalog="system" width="128" height="118"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
