@@ -83,6 +83,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wSN-df-OQ5" secondAttribute="trailing" constant="30" id="5bv-5p-Joq"/>
+                            <constraint firstItem="wSN-df-OQ5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ANb-HF-jAp"/>
                             <constraint firstItem="wSN-df-OQ5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="IeJ-ZR-TDU"/>
                             <constraint firstItem="wSN-df-OQ5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="OiK-cq-es3"/>
                         </constraints>

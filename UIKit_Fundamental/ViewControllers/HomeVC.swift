@@ -15,6 +15,7 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
     @IBOutlet weak var mySearchBtn: UIButton!
     @IBOutlet weak var myIndicator: UIActivityIndicatorView!
     var keyboardDismissTabGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
+    var distance: Double = 0
     
     // MARK: - overrid methods
     override func viewDidLoad() {
@@ -111,17 +112,19 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
             print("keyboardSize.height: \(keyboardSize.height)")
             print("mySearchBtn.frame.origin.y: \(mySearchBtn.frame.origin.y)")
             
-            if (keyboardSize.height < mySearchBtn.frame.origin.y) {
-                let distance = keyboardSize.height - mySearchBtn.frame.origin.y
+            if (keyboardSize.height <= mySearchBtn.frame.origin.y) {
+                distance = keyboardSize.height - mySearchBtn.frame.origin.y
                 print("keyboard covered searchbtn / distance: \(distance)")
-                
-                self.view.frame.origin.y = distance + mySearchBtn.frame.height
+                print("changed upvalue: \(distance - mySearchBtn.frame.height)")
+
+                self.view.frame.origin.y = distance - mySearchBtn.frame.height
             }
         }
     }
     
     @objc func keyboardWillHideHandle() {
         print("HomeVC - keyboardWillHideHandle() called")
+        self.view.frame.origin.y = 0
     }
     
     // MARK: - IBActions methods
