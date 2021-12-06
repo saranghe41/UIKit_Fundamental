@@ -7,6 +7,7 @@
 
 import UIKit
 import Toast_Swift
+import Alamofire
 
 class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
@@ -148,11 +149,26 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         self.mySearchBar.becomeFirstResponder()
     }
     
+    // 검색버튼이 클릭되었을 때
     @IBAction func onSearchBtnClicked(_ sender: UIButton) {
         print("HomeVC - onSearchBtnClicked() called")
     
+        let url = API.BASE_URL + "search/photos"
+        guard let userInput = mySearchBar.text else { return }
+        let queryParam = ["query" : userInput, "client_id" : API.CLIENT_ID]
+        
+        /*
+        AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: {
+            response in debugPrint(response)
+        })
+         */
+        
+        MyAlamofireManager.shared.session.request(url).responseJSON(completionHandler: {
+            response in debugPrint(response)
+        })
+        
         // 화면으로 이동
-        pushVC()
+        //pushVC()
     }
     
     // MARK: - UISearchBar Delegate methods
