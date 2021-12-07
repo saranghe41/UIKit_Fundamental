@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 // 검색관련 API 호출
-enum Router: URLRequestConvertible {
+enum MySearchRouter: URLRequestConvertible {
     //case get([String: String]), post([String: String])
     
     case searchPhotos(term: String)

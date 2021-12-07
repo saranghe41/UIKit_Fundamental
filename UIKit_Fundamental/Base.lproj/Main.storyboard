@@ -27,7 +27,7 @@
                                             <constraint firstAttribute="width" constant="150" id="qAG-tI-s1Y"/>
                                         </constraints>
                                     </imageView>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Kuk-Kp-fpN" userLabel="mySegment Btn">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Kuk-Kp-fpN" userLabel="MySegment Btn">
                                         <rect key="frame" x="55" y="150" width="150" height="32"/>
                                         <segments>
                                             <segment title="사진검색"/>

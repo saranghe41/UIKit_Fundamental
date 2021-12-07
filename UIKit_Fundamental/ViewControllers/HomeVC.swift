@@ -9,7 +9,7 @@ import UIKit
 import Toast_Swift
 import Alamofire
 
-class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
+class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var mySegmentBtn: UISegmentedControl!
     @IBOutlet weak var mySearchBar: UISearchBar!
@@ -153,9 +153,9 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
     @IBAction func onSearchBtnClicked(_ sender: UIButton) {
         print("HomeVC - onSearchBtnClicked() called")
     
-        let url = API.BASE_URL + "search/photos"
+//        let url = API.BASE_URL + "search/photos"
         guard let userInput = mySearchBar.text else { return }
-        let queryParam = ["query" : userInput, "client_id" : API.CLIENT_ID]
+//        let queryParam = ["query" : userInput, "client_id" : API.CLIENT_ID]
         
         /*
         AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: {
@@ -163,9 +163,28 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         })
          */
         
-        MyAlamofireManager.shared.session.request(url).responseJSON(completionHandler: {
-            response in debugPrint(response)
-        })
+        var urlToCall : URLRequestConvertible?
+        
+        switch mySegmentBtn.selectedSegmentIndex {
+        case 0:
+            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+        case 1:
+            urlToCall = MySearchRouter.searchUsers(term: userInput)
+        default:
+            print("default")
+        }
+        
+        if let urlConvertible = urlToCall {
+            MyAlamofireManager
+                .shared
+                .session
+                .request(urlConvertible)
+                .validate(statusCode: 200..<401)
+                .responseJSON(completionHandler: {
+                response in
+                //debugPrint(response)
+            })
+        }
         
         // 화면으로 이동
         //pushVC()
