@@ -8,4 +8,5 @@ target 'UIKit_Fundamental' do
   # Pods for UIKit_Fundamental
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'Alamofire', '~> 5.4'
+  pod 'SwiftyJSON', '~> 4.0'
 end

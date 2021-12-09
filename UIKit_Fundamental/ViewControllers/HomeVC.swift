@@ -25,7 +25,6 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         
         print("HomeVC - viewDidLoad() called")
         
-        // ui 설정
         self.config()
     }
     
@@ -59,6 +58,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         print("HomeVC - viewWillAppear() called")
         // 키보드 올라가는 이벤트를 받는 처리
+        // 키보드 노티 등록
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowHandle(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideHandle), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
@@ -66,18 +66,18 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("HomeVC - viewWillDisappear() called")
+        // 키보드 노티 해제
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     // MARK: - fileprivate methods
     fileprivate func config() {
+        // ui 설정
         self.mySearchBtn.layer.cornerRadius = 10
         // self.mySearchBar.searchBarStyle = .minimal // ui에서 직접설정함
         self.mySearchBtn.isHidden = true
-       
         self.mySearchBar.delegate = self
-        
         self.keyboardDismissTabGesture.delegate = self
         
         // 제스처 추가하기
@@ -151,7 +151,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
     // 검색버튼이 클릭되었을 때
     @IBAction func onSearchBtnClicked(_ sender: UIButton) {
-        print("HomeVC - onSearchBtnClicked() called")
+        print("HomeVC - onSearchBtnClicked() called / selectedIndex: \(mySegmentBtn.selectedSegmentIndex)")
     
 //        let url = API.BASE_URL + "search/photos"
         guard let userInput = mySearchBar.text else { return }
@@ -167,24 +167,46 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         
         switch mySegmentBtn.selectedSegmentIndex {
         case 0:
-            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+           //urlToCall = MySearchRouter.searchPhotos(term: userInput)
+            
+            /*
+             - 클로저 ARC(Automatic Reference Count)
+             - 자동 메모리사용수 계산
+             - stack, heap 메모리 영역
+             - class, closure 등이 사용
+             - self 사용시, weak self를 사용
+               self는 메모리 카운트를 증가
+               다음과 같이 self.메소드등 self를 사용해야 하는경우 weak self로 메모리에 계속 잡아두고 있는 현상을 방지한다.
+             */
+            MyAlamofireManager.shared.getPhotos(searchTerm: userInput, completion: { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let fetchedPhotoes):
+                    print("HomeVC - getPhotos.success - fetchedPhotoes.count : \(fetchedPhotoes.count)")
+                case .failure(let error):
+                    print("HomeVC - getPhotos.failure - error : \(error.rawValue)")
+                    self.view.makeToast(error.rawValue, duration: 1.0, position: .center)
+                }
+            })
         case 1:
             urlToCall = MySearchRouter.searchUsers(term: userInput)
         default:
             print("default")
         }
         
-        if let urlConvertible = urlToCall {
-            MyAlamofireManager
-                .shared
-                .session
-                .request(urlConvertible)
-                .validate(statusCode: 200..<401)
-                .responseJSON(completionHandler: {
-                response in
-                //debugPrint(response)
-            })
-        }
+//        if let urlConvertible = urlToCall {
+//            MyAlamofireManager
+//                .shared
+//                .session
+//                .request(urlConvertible)
+//                .validate(statusCode: 200..<401)
+//                .responseJSON(completionHandler: {
+//                response in
+//                    print("HomeVC - response : \(response)")
+//                    print("HomeVC - response.error : \(response.error)")
+//                //debugPrint(response)
+//            })
+//        }
         
         // 화면으로 이동
         //pushVC()
